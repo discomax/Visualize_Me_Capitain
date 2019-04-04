@@ -145,12 +145,12 @@ for (var i = 0; i < restaurants.length; i++) {
     // Make a variable to hold the latitude and longitude of each restaurant
     var loc = [restaurants[i].lat, restaurants[i].long];
     
-    // Pin the restaurants marker using the coordinates using loc.
+    // Create the restaurant's marker using the coordinates using loc,
     // bind a pop-up with restaurant info & push it to the cityMarkers array.
     restMarkers.push(
        L.marker(loc).bindPopup("<h2>" + restaurants[i].name + "</h2> \
         <p><font size='3'> \
-        Type: " + restaurants[i].type + "<br> \
+        Category: " + restaurants[i].type + "<br> \
         Prince: " + restaurants[i].price + "<br> \
         Rating: " + restaurants[i].rating + "<br> \
         Address: <br> \
