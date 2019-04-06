@@ -1,42 +1,99 @@
 d3.json("static/js/final.json", function(data) {
-    var rType = [];
-    var rPrice = [];
-    var rZip = []; 
+    console.log(data);
 
-    data.forEach(function(row) {
-        rType.push(row.type);
-        rPrice.push(row.price);
-        rZip.push(row.zip);
-        rType.sort();
-        rPrice.sort();
-        rZip.sort();
-        var uniqueType = new Set(rType);
-        var uniquePrice = new Set(rPrice);
-        var uniqueZip = new Set(rZip);
-    })
-        for (x=0; x<data.length; x++){
-            for (y=0; y<restTypes.count; y++){
-                if (row.type === restTypes[y]){
-                    restCounts[y] = restCounts[y] +1;
-                }
+    restTypeList = [];
+    listCheck = false;
+    restTypeDict = [];
+    restType=[];
+    restCount=[];
+    restColor=[];
+
+
+    data.forEach(function(row){
+        for(x=0; x<restTypeList.length; x++){
+            if (row.type ===restTypeList[x]){
+                listCheck = true;
             }
-
+            
         }
+        if (listCheck===false){
+            restTypeList.push(row.type);
+            restTypeDict.push({
+                type: row.type,
+                count: 0
+
+            })
+        }
+        listCheck = false;
+
+       // for(y=0; y<restTypeDict.length; y++){
+            //if (restTypeDict[y]===row.type)
+          //  console.log(restTypeDict[y].type);
+            
+       // }
+
+
+        
     })
+    data.forEach(function(row){
+        restTypeDict.forEach(function(dict){
+            if (row.type===dict.type){
+                dict.count++;
+            }
+        })
+    })
+    restTypeDict.sort(function(a, b){
+        return b.count-a.count
+    })
+
+    for(z=0; z<restTypeDict.length; z++){
+        restType.push(restTypeDict[z].type);
+        console.log(restTypeDict[z].type);
+        restCount.push(restTypeDict[z].count);
+        restColor.push(getRandomColor());
+
+    }
+
+    console.log(restType);
+    console.log(restCount);
+    console.log(restColor);
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+          labels: restType,
+          datasets: [
+            {
+              label: "Restaurant Count",
+              backgroundColor: restColor,
+              data: restCount
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Charlotte Restaurant Histogram'
+          }
+        }
+    });
+    console.log(restTypeDict.length);
+    console.log(restTypeDict[0].type);
+
+    
+   
+    })
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
  
 
 
 
-        /*var barChart = [{
-            x: data.type,
-            y: data.rating,
-            type: 'bar'
-        }
-    
-        ];
-        Plotly.newPlot("panel-bar", [barChart]);
         
-        
-        }) */
-
-});
