@@ -226,7 +226,7 @@ d3.json("final.json", function(data) {
    mapLat = 35.227085;
    mapLong = -80.843124;
 
-   var streetMap = L.map("map", {
+   var restaurantMap = L.map("map", {
       center: [mapLat, mapLong],
       zoom: 11,
       layers: [streetMap, restLayer]
