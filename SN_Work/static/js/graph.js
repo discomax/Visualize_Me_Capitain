@@ -92,29 +92,7 @@ d3.json("static/js/final.json", function(data) {
       }
     });
 
-    new Chart(document.getElementById("pie2-chart"), {
-      type: 'pie',
-      data: {
-        labels: restType,
-        datasets: [
-          {
-            label: "Restaurant Count",
-            backgroundColor: restColor,
-            data: restCount
-          }
-        ]
-      },
-      options: {
-        legend: { display: false },
-        title: {
-          display: true,
-          text: 'Charlotte Restaurant Piechart'
-        }
-      }
-    });
   })
-
-
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -123,8 +101,3 @@ d3.json("static/js/final.json", function(data) {
         }
         return color;
       }
- 
-
-
-
-        
