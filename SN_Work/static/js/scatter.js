@@ -12,7 +12,7 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3.select(".chart")
+var svg = d3.select("#scatter-chart")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -27,14 +27,14 @@ d3.json("static/js/final.json", function(error, restData) {
     // Step 1: Parse Data/Cast as numbers
     // ==============================
       restData.forEach(function(data) {
-        data.zip = +data.zip;
-        data.price = data.price;
+        data.rating = data.rating;
+        data.price = data.price.length;
       });
 
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(restData, d => d.zip)])
+      .domain([0, d3.max(restData, d => d.rating)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
@@ -61,11 +61,11 @@ d3.json("static/js/final.json", function(error, restData) {
     .data(restData)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(d.zip))
+    .attr("cx", d => xLinearScale(d.rating))
     .attr("cy", d => yLinearScale(d.price))
     .attr("r", "15")
     .attr("fill", "blue")
-    .attr("opacity", ".5");
+    .attr("opacity", ".1");
 
     // Step 6: Initialize tool tip
     // ==============================
@@ -97,7 +97,7 @@ d3.json("static/js/final.json", function(error, restData) {
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Types of restaurant");
+      .text("Price range");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
