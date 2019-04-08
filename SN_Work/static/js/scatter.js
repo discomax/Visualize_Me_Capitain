@@ -21,24 +21,24 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import Data
-d3.csv("hairData.csv")
-  .then(function(hairData) {
+d3.json("static/js/final.json")
+  .then(function(restData) {
 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
-    hairData.forEach(function(data) {
-      data.hair_length = +data.hair_length;
-      data.num_hits = +data.num_hits;
+    restData.forEach(function(data) {
+      data.zip = +data.zip;
+      data.price = data.price;
     });
 
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(hairData, d => d.hair_length)])
+      .domain([20, d3.max(restData, d => d.zip)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(hairData, d => d.num_hits)])
+      .domain([0, d3.max(restData, d => d.price)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -58,11 +58,11 @@ d3.csv("hairData.csv")
     // Step 5: Create Circles
     // ==============================
     var circlesGroup = chartGroup.selectAll("circle")
-    .data(hairData)
+    .data(restData)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(d.hair_length))
-    .attr("cy", d => yLinearScale(d.num_hits))
+    .attr("cx", d => xLinearScale(d.zip))
+    .attr("cy", d => yLinearScale(d.price))
     .attr("r", "15")
     .attr("fill", "pink")
     .attr("opacity", ".5");
@@ -73,7 +73,7 @@ d3.csv("hairData.csv")
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.rockband}<br>Hair length: ${d.hair_length}<br>Hits: ${d.num_hits}`);
+        return (`${d.name}<br>zip: ${d.zip}<br>price: ${d.price}`);
       });
 
     // Step 7: Create tooltip in the chart

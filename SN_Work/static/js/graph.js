@@ -4,9 +4,9 @@ d3.json("static/js/final.json", function(data) {
     restTypeList = [];
     listCheck = false;
     restTypeDict = [];
-    restType=[];
-    restCount=[];
-    restColor=[];
+    restType = [];
+    restCount = [];
+    restColor = [];
     priceRange = [];
     zipCode = [];
     
@@ -26,15 +26,6 @@ d3.json("static/js/final.json", function(data) {
             })
         }
         listCheck = false;
-
-       // for(y=0; y<restTypeDict.length; y++){
-            //if (restTypeDict[y]===row.type)
-          //  console.log(restTypeDict[y].type);
-            
-       // }
-
-
-        
     })
     data.forEach(function(row){
         restTypeDict.forEach(function(dict){
@@ -99,11 +90,9 @@ d3.json("static/js/final.json", function(data) {
           text: 'Charlotte Restaurant Piechart'
         }
       }
-  });
-    
-   
-    })
-    new Chart(document.getElementById("pie-chart"), {
+    });
+
+    new Chart(document.getElementById("pie2-chart"), {
       type: 'pie',
       data: {
         labels: restType,
@@ -122,7 +111,9 @@ d3.json("static/js/final.json", function(data) {
           text: 'Charlotte Restaurant Piechart'
         }
       }
-  });
+    });
+  })
+
 
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
