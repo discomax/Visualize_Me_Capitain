@@ -106,6 +106,14 @@ select {
   animation-delay: 1.2s;
 }
 
+#bar-chart {
+  background: white;
+}
+
+#-panelscatter{
+  background: white;
+}
+
 /* input placeholder color changes */
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -126,6 +134,8 @@ select {
   /* Firefox 18- */
   color: #8e979f;
 }
+
+
 
 /* media queries which will only be activated at specific screen sizes */
 @media (max-width: 800px) {

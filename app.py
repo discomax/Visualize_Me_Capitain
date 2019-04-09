@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request)
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -12,6 +12,7 @@ def graph():
 @app.route('/map.html')
 def maps():
     return render_template('map.html')
+
 
 
 if __name__ == '__main__':
