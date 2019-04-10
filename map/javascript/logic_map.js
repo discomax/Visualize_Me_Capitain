@@ -148,8 +148,8 @@ d3.json("final.json", function(data) {
 
    var restaurantMap = L.map("map", {
       center: [charlotteLat, charlotteLong],
-      zoom: 11,
-      layers: [streetMap, allLayer, greenLayer, violetLayer, yellowLayer, redLayer]
+      zoom: 10.25,
+      layers: [streetMap, allLayer]
    });
 
    // Create the layer control and add to map
