@@ -137,15 +137,14 @@ const MAP_KEY = "pk.eyJ1IjoiZGlzY29tYXgiLCJhIjoiY2p0bGtwdjdvMGN0ZzRhcGVoaHBrdGRv
 // Creating map object
 
 // An array which will be used to store created restMarkers
+var url = '/data';
 var restMarkers = [];
 
 // loop through the cities array, create a new marker for each city. 
 // for (var i = 0; i < restaurants.length; i++) {
-   
-// var url = "/data";
-// console.log('url: ', url)
-// d3.json(url).then(function(data) {
-d3.json("static/js/final.json", function(data) {
+var url = "/data";
+console.log('url: ', url)
+d3.json(url).then(function(data) {
    
    //var restString = JSON.stringify(data);
    var restaurants = data;

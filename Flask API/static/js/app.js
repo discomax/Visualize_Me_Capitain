@@ -17,11 +17,10 @@ function handleClick(){
     var filterType=inputType.property("value");
     var filterPrice = inputPrice.property("value");
 
-    // var url = "/data";
-    // console.log('url: ', url)
+    var url = "/data";
+    console.log('url: ', url)
     console.log(filterType);
-    // d3.json(url).then(function(data) {
-    d3.json("static/js/final.json", function(data) {
+    d3.json(url).then(function(data) {
         var filterRest = data;
         console.log(filterRest);
        if(filterType){
@@ -60,8 +59,7 @@ function init(){
     var selectType = d3.select("#selectType");
     var selectPrice = d3.select("#selectPrice");
 
-    // d3.json(url).then(function(data) {
-    d3.json("static/js/final.json", function(data) {
+    d3.json(url).then(function(data) {
         console.log(data);
         data.forEach(function(row) {
             rType.push(row.type);
@@ -89,8 +87,7 @@ function init(){
 
 
     });
-    // d3.json(url).then(function(data) {
-    d3.json("static/js/final.json", function(data) {
+    d3.json(url).then(function(data) {
         data.forEach(function(row) {
             var restRow = tbody.append("tr");
             var restName = restRow.append("td").text(row.name);

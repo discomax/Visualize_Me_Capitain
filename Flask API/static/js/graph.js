@@ -1,7 +1,6 @@
-// var url = "/data";
-// console.log('url: ', url)
-// d3.json(url).then(function(data) {
-d3.json("static/js/final.json", function(data) {
+var url = "/data";
+console.log('url: ', url)
+d3.json(url).then(function(data) {
     console.log(data);
 
     restTypeList = [];
@@ -123,8 +122,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import Data
-// d3.json(url).then(function(error, restData) {
-d3.json("static/js/final.json", function(error, restData) {
+d3.json(url).then(function(error, restData) {
   if (error) throw error;
 
     // Step 1: Parse Data/Cast as numbers
