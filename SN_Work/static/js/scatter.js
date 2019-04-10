@@ -1,102 +1,3 @@
-d3.json("static/js/final.json", function(data) {
-    console.log(data);
-
-    restTypeList = [];
-    listCheck = false;
-    restTypeDict = [];
-    restType=[];
-    restCount=[];
-    restColor=[];
-
-
-    data.forEach(function(row){
-        for(x=0; x<restTypeList.length; x++){
-            if (row.type ===restTypeList[x]){
-                listCheck = true;
-            }
-            
-        }
-        if (listCheck===false){
-            restTypeList.push(row.type);
-            restTypeDict.push({
-                type: row.type,
-                count: 0
-
-            })
-        }
-        listCheck = false;
-
-       // for(y=0; y<restTypeDict.length; y++){
-            //if (restTypeDict[y]===row.type)
-          //  console.log(restTypeDict[y].type);
-            
-       // }
-
-
-        
-    })
-    data.forEach(function(row){
-        restTypeDict.forEach(function(dict){
-            if (row.type===dict.type){
-                dict.count++;
-            }
-        })
-    })
-    restTypeDict.sort(function(a, b){
-        return b.count-a.count
-    })
-
-    for(z=0; z<restTypeDict.length; z++){
-        restType.push(restTypeDict[z].type);
-        console.log(restTypeDict[z].type);
-        restCount.push(restTypeDict[z].count);
-        restColor.push(getRandomColor());
-
-    }
-
-    console.log(restType);
-    console.log(restCount);
-    console.log(restColor);
-    new Chart(document.getElementById("bar-chart"), {
-        type: 'bar',
-        data: {
-          labels: restType,
-          datasets: [
-            {
-              label: "Restaurant Count",
-              backgroundColor: restColor,
-              data: restCount
-            }
-          ]
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: 'Charlotte Restaurant Histogram'
-          }
-        }
-    });
-    console.log(restTypeDict.length);
-    console.log(restTypeDict[0].type);
-
-    
-   
-    })
-
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
-
-/////////////////////////////////////////////////////////////////
-////////////////Subra's scatter plot/////////////////////////////
-/////////////////////////////////////////////////////////////////
-
 var svgWidth = 860;
 var svgHeight = 500;
 
@@ -111,7 +12,7 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3.select("#-panelscatter")
+var svg = d3.select("#scatter-chart")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -206,9 +107,3 @@ d3.json("static/js/final.json", function(error, restData) {
 
     });
 
-
- 
-
-
-
-        

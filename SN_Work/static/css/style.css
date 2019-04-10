@@ -106,14 +106,6 @@ select {
   animation-delay: 1.2s;
 }
 
-#bar-chart {
-  background: white;
-}
-
-#-panelscatter{
-  background: white;
-}
-
 /* input placeholder color changes */
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -122,20 +114,18 @@ select {
 
 .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: #8e979f;
+  color: #8e9f9f;
 }
 
 .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: #8e979f;
+  color: #dae2e9;
 }
 
 .form-control:-moz-placeholder {
   /* Firefox 18- */
   color: #8e979f;
 }
-
-
 
 /* media queries which will only be activated at specific screen sizes */
 @media (max-width: 800px) {
@@ -220,3 +210,24 @@ select {
     opacity: 1;
   }
 }
+.tooltip {
+  position: absolute;
+  width: 135px;
+  height: 60px;
+  padding: 2px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: white;
+  text-align: center;
+  background: #551aaf;
+  border: 0;
+  border-radius: 10px;
+}
+
+.axisText {
+  font-family: sans-serif;
+  font-weight: bold;
+  fill: #551aaf;
+  text-anchor: middle;
+}
+
