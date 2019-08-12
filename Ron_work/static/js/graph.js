@@ -58,24 +58,24 @@ d3.json("static/js/final.json", function(data) {
     console.log(restCount);
     console.log(restColor);
     new Chart(document.getElementById("bar-chart"), {
-        type: 'bar',
-        data: {
-          labels: restType,
-          datasets: [
-            {
-              label: "Restaurant Count",
-              backgroundColor: restColor,
-              data: restCount
-            }
-          ]
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: 'Charlotte Restaurant Histogram'
+      type: 'bar',
+      data: {
+        labels: restType,
+        datasets: [
+          {
+            label: "Restaurant Count",
+            backgroundColor: restColor,
+            data: restCount
           }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Charlotte Restaurant Histogram'
         }
+      }
     });
     console.log(restTypeDict.length);
     console.log(restTypeDict[0].type);

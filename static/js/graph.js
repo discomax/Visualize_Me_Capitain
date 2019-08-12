@@ -1,9 +1,8 @@
-// var url = "/data";
-// console.log('url: ', url)
-// d3.json(url).then(function(data) {
+
+//grab data for histogram
 d3.json("static/js/final.json", function(data) {
     console.log(data);
-
+    //variable list
     restTypeList = [];
     listCheck = false;
     restTypeDict = [];
@@ -11,7 +10,7 @@ d3.json("static/js/final.json", function(data) {
     restCount=[];
     restColor=[];
 
-
+    //loop to grab restaurant type list and append to dictionary object
     data.forEach(function(row){
         for(x=0; x<restTypeList.length; x++){
             if (row.type ===restTypeList[x]){
@@ -27,17 +26,13 @@ d3.json("static/js/final.json", function(data) {
 
             })
         }
+        //reset to false to perform check for next restaurant type
         listCheck = false;
-
-       // for(y=0; y<restTypeDict.length; y++){
-            //if (restTypeDict[y]===row.type)
-          //  console.log(restTypeDict[y].type);
-            
-       // }
 
 
         
     })
+    //loop entire data to find counts for each restaurant type
     data.forEach(function(row){
         restTypeDict.forEach(function(dict){
             if (row.type===dict.type){
@@ -45,14 +40,17 @@ d3.json("static/js/final.json", function(data) {
             }
         })
     })
+    //sort dictionary
     restTypeDict.sort(function(a, b){
         return b.count-a.count
     })
 
+    //push dictionary into list objects for plotting
     for(z=0; z<restTypeDict.length; z++){
         restType.push(restTypeDict[z].type);
         console.log(restTypeDict[z].type);
         restCount.push(restTypeDict[z].count);
+        //change colors for each load
         restColor.push(getRandomColor());
 
     }
@@ -60,6 +58,7 @@ d3.json("static/js/final.json", function(data) {
     console.log(restType);
     console.log(restCount);
     console.log(restColor);
+    //chart.js to plot histogram
     new Chart(document.getElementById("bar-chart"), {
         type: 'bar',
         data: {
@@ -82,19 +81,16 @@ d3.json("static/js/final.json", function(data) {
     });
     console.log(restTypeDict.length);
     console.log(restTypeDict[0].type);
-
-    
-   
-    })
-
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
+})
+//function for random color generater
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+  return color;
+}
 
 /////////////////////////////////////////////////////////////////
 ////////////////Subra's scatter plot/////////////////////////////
